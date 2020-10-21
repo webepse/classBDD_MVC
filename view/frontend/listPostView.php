@@ -5,7 +5,7 @@
 <h1>Mon Blog</h1>
 <p>Derniers articles du blog: </p>
 
-
+<?= var_dump($posts) ?>
 <?php foreach($posts as $post) : ?>
     <div class="news">
         <h3>
