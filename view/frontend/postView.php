@@ -18,7 +18,7 @@
 <h1>Commentaires:</h1>
 <?php foreach($comments as $comment) : ?>
     <div class="comments">
-        <p><strong><?= $comment->author ?></strong> le <?= $comment->date ?> <a href="#">Modifier</a></p>
+        <p><strong><?= $comment->author ?></strong> le <?= $comment->date ?> <a href="index.php?action=viewComment&id=<?= $comment->id ?>">Modifier</a></p>
         <p><?= nl2br($comment->comment) ?></p>
     </div>
 <?php endforeach; ?>

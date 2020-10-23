@@ -37,8 +37,14 @@ require "model/Autoloader.php";
             }else{
                 header("LOCATION:index.php?action=post&id=".$postID);
             }
+        }
 
+        public static function showComment($id)
+        {
+            $manager = new CommentManager();
+            $comment = $manager->getComment($id);
 
+            require("view/frontend/commentView.php");
         }
 
 

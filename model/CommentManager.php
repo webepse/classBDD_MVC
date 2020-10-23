@@ -19,5 +19,14 @@
             return $result;  
         }
 
+        public function getComment($commentID)
+        {
+            $comment = $this->dbConnect()->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y %Hh%imin%ss") AS date FROM comments WHERE id=?');
+            $comment->execute([$commentID]);
+            $datas = $comment->fetch(PDO::FETCH_OBJ);
+            $comment->closeCursor();
+            return $datas;
+        }
+
 
     }

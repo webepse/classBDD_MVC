@@ -32,6 +32,12 @@ try{
             }else{
                 throw new Exception('Aucun identifiant d\'article est envoyé');
             }
+        }elseif($_GET['action']=="viewComment"){
+            if(isset($_GET['id']) && $_GET['id'] > 0){
+                HomeController::showComment($_GET['id']);
+            }else{
+                throw new Exception('Aucun identifiant de commentaire est envoyé');
+            }
         }
     }else{
         HomeController::listPosts(5);
