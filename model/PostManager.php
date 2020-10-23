@@ -4,9 +4,17 @@ use \PDO;
 
 class PostManager extends Manager{
     
-    public function getPosts()
+    public function getPosts($limit)
     {
-        $req = $this->dbConnect()->query("SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y %Hh%imin%ss') AS date FROM posts ORDER BY creation_Date DESC");
+        if($limit == "")
+        {
+            $req = $this->dbConnect()->query("SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y %Hh%imin%ss') AS date FROM posts ORDER BY creation_Date DESC");
+        }
+        else{
+            $req = $this->dbConnect()->prepare("SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y %Hh%imin%ss') AS date FROM posts ORDER BY creation_Date DESC LIMIT 0,:myLimit");
+            $req->bindParam(':myLimit', $limit, PDO::PARAM_INT);
+            $req->execute();
+        }
         $datas = $req->fetchAll(PDO::FETCH_CLASS, 'App\Post');
         $req->closeCursor();
         return $datas;

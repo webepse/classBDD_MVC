@@ -9,7 +9,7 @@ try{
     if(isset($_GET['action'])){
         if($_GET['action']=='listPosts')
         {
-            HomeController::listPosts();
+            HomeController::listPosts(5);
         }
         elseif($_GET['action']=="post")
         {
@@ -22,7 +22,7 @@ try{
             }
         }
     }else{
-        HomeController::listPosts();
+        HomeController::listPosts(5);
     }
 
 }catch(Exception $e){
