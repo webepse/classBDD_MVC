@@ -1,7 +1,9 @@
 <?php
     namespace App;
 
-    require "model/Autoloader.php";
+use Exception;
+
+require "model/Autoloader.php";
     Autoloader::register();
 
     class HomeController{
@@ -23,6 +25,22 @@
 
             require('view/frontend/postView.php');
         }
+
+        public static function addComment($postID,$author,$comment)
+        {
+            $manager = new CommentManager();
+
+            $results = $manager->postComment($postID,$author,$comment);
+
+            if($results === false){
+                throw new Exception('Impossible d\'ajouter le commentaire');
+            }else{
+                header("LOCATION:index.php?action=post&id=".$postID);
+            }
+
+
+        }
+
 
     }
 

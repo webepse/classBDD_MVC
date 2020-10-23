@@ -12,4 +12,12 @@
             return $datas;
         }
 
+        public function postComment($postID, $author, $comment)
+        {
+            $insert = $this->dbConnect()->prepare("INSERT INTO comments(post_id,author,comment,comment_date) VALUES(?,?,?,NOW())");
+            $result = $insert->execute([$postID,$author,$comment]);
+            return $result;  
+        }
+
+
     }

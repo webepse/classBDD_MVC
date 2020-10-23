@@ -18,11 +18,29 @@
 <h1>Commentaires:</h1>
 <?php foreach($comments as $comment) : ?>
     <div class="comments">
-        <p><strong><?= $comment->author ?></strong> le <?= $comment->date ?></p>
+        <p><strong><?= $comment->author ?></strong> le <?= $comment->date ?> <a href="#">Modifier</a></p>
         <p><?= nl2br($comment->comment) ?></p>
     </div>
 <?php endforeach; ?>
 
+<form action="index.php?action=addComment&id=<?= $post->id ?>" method="POST">
+    <div>
+        <label for="author">Auteur: </label>
+        <input type="text" id="author" name="author">
+    </div>
+    <div>
+        <label for="comment">Commentaire: </label><br>
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Envoyer">
+    </div>
+</form>
+<?php
+    if(isset($_GET['err'])){
+        echo "<div class='error'>Veuillez remplir correctement le formulaire</div>";
+    }
+?>
 
 
 <?php $content = ob_get_clean(); ?>
