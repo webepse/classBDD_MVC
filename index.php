@@ -38,6 +38,17 @@ try{
             }else{
                 throw new Exception('Aucun identifiant de commentaire est envoyé');
             }
+        }elseif($_GET['action']=="upComment")
+        {
+            if(isset($_GET['id'])){
+                if(!empty($_POST['comment']) && !empty($_POST['author'])){
+                    HomeController::updateComment($_GET['id'],$_POST['author'],$_POST['comment'],$_POST['postId']);
+                }else{
+                    header("LOCATION:index.php?action=viewComment&id=".$_GET['id']."&err=1");
+                }
+            }else{
+                throw new Exception('Aucun identifiant de commentaire est envoyé');
+            }
         }
     }else{
         HomeController::listPosts(5);

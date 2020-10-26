@@ -47,6 +47,16 @@ require "model/Autoloader.php";
             require("view/frontend/commentView.php");
         }
 
+        public static function updateComment($commentID, $author, $comment, $postID){
+            $manager = new CommentManager();
+            $resultat = $manager->updateComment($commentID,$author,$comment);
+            if($resultat === false){
+                throw new Exception('Impossible de modifier le commentaire');
+            }else{
+                header("LOCATION:index.php?action=post&id=".$postID);
+            }
+        }
+
 
     }
 

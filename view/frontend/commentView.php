@@ -2,7 +2,8 @@
 
 <?php ob_start(); ?>
 
-<form action="#" method="POST">
+<form action="index.php?action=upComment&id=<?= $comment->id ?>" method="POST">
+    <input type="hidden" name="postId" value="<?= $comment->postId ?>">
     <div>
         <label for="author">Auteur: </label>
         <input type="text" id="author" name="author" value="<?= $comment->author ?>">
